@@ -1,0 +1,1195 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Landskrona Stadsbibliotek – E-post & Nyhetsbrevsbyggare</title>
+  <!-- INLINED_FONTS_CSS -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      /* Landskrona stad Harmonies */
+      /* 1. Blue Harmony */
+      --stad-blue-dark: #004E68;
+      --stad-blue-mid: #69A3BD;
+      --stad-blue-light: #93D5F6;
+      --stad-blue-xlight: #E4F5FD;
+      
+      /* 2. Green Harmony */
+      --stad-green-dark: #005152;
+      --stad-green-mid: #709E90;
+      --stad-green-light: #78C8A4;
+      --stad-green-xlight: #DBEED8;
+      
+      /* 3. Burgundy/Pink Harmony */
+      --stad-pink-dark: #631533;
+      --stad-pink-mid: #F18B8F;
+      --stad-pink-light: #FAC4C9;
+      --stad-pink-xlight: #FCEEED;
+      
+      /* Universal Neutrals */
+      --lk-neutral-light: #F7F4F3;
+      --lk-neutral-dark: #494B52;
+      --lk-gold: #BA9754;
+      --lk-yellow: #FFFCD5;
+      
+      /* Landskrona Ven Colors */
+      --ven-navy: #002438;
+      --ven-stad: #3B051F;
+      --ven-business: #EE1D23;
+      --ven-natur: #013736;
+      --ven-tegel: #A66420;
+      --ven-ven: #0551A4;
+      --ven-cement: #E3E7D8;
+      --ven-himmel: #8D9ACD;
+      --ven-citadellet: #F393B9;
+      --ven-koloni: #67826C;
+      --ven-raps: #FFF68D;
+      --ven-baravara: #B2DDCA;
+      --ven-gray-light: #F2F1EE;
+      --ven-lila-light: #DFCCE3;
+      --ven-rosa-light: #F8C6D3;
+      --ven-gron-light: #D9EACA;
+      --ven-gul-light: #F9F5D3;
+      --ven-bla-light: #D4EFFB;
+      
+      /* Active Theme Variables (default: stad, burgundy) */
+      --theme-primary: #631533;
+      --theme-secondary: #F18B8F;
+      --theme-accent: #FAC4C9;
+      --theme-bg-soft: #FCEEED;
+      --theme-font: 'Ciutadella', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      
+      --bg-page: #f1f5f9;
+      --bg-panel: #ffffff;
+      --border-subtle: #e2e8f0;
+      --text-main: #1e293b;
+      --text-muted: #64748b;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: var(--theme-font);
+      background-color: var(--bg-page);
+      color: var(--text-main);
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Top Navigation Bar */
+    header {
+      background: var(--bg-panel);
+      border-bottom: 2px solid var(--theme-primary);
+      padding: 8px 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+      z-index: 100;
+      flex-shrink: 0;
+    }
+
+    .header-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .header-row-actions {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      padding-top: 6px;
+      border-top: 1px solid #f1f5f9;
+      flex-wrap: wrap;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .brand-crest {
+      width: 44px;
+      height: 34px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .brand-crest img {
+      max-height: 100%;
+      max-width: 100%;
+      object-fit: contain;
+    }
+
+    .brand-text h1 {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--theme-primary);
+      line-height: 1.1;
+      letter-spacing: -0.01em;
+    }
+
+    .brand-text h1 span {
+      color: #334155;
+      font-weight: 500;
+    }
+
+    .brand-text p {
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    /* Selectors in Header: Brand & Harmonies */
+    .brand-selectors-bar {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      background: #f8fafc;
+      padding: 6px 14px;
+      border-radius: 8px;
+      border: 1px solid var(--border-subtle);
+    }
+
+    .selector-group {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .selector-label {
+      font-size: 11.5px;
+      font-weight: 600;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+    }
+
+    .brand-toggle-btn {
+      background: #ffffff;
+      border: 1px solid #cbd5e1;
+      padding: 5px 12px;
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      color: #475569;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      transition: all 0.15s ease;
+    }
+
+    .brand-toggle-btn.active {
+      background: var(--theme-primary);
+      color: #ffffff;
+      border-color: var(--theme-primary);
+      box-shadow: 0 1px 3px rgba(0,0,0,0.12);
+    }
+
+    .harmony-pill {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      border: 2px solid #ffffff;
+      cursor: pointer;
+      outline: 2px solid transparent;
+      transition: all 0.15s;
+    }
+
+    .harmony-pill:hover {
+      transform: scale(1.15);
+    }
+
+    .harmony-pill.active {
+      outline: 2px solid var(--text-main);
+      box-shadow: 0 0 0 1px #fff;
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    /* Language Switcher */
+    .lang-switcher {
+      display: flex;
+      background: #f1f5f9;
+      border-radius: 6px;
+      padding: 2px;
+      border: 1px solid var(--border-subtle);
+    }
+
+    .lang-btn {
+      border: none;
+      background: transparent;
+      padding: 4px 10px;
+      border-radius: 4px;
+      font-size: 11.5px;
+      font-weight: 600;
+      color: #475569;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      transition: all 0.15s;
+    }
+
+    .lang-btn.active {
+      background: #ffffff;
+      color: #0f172a;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.08);
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      padding: 7px 14px;
+      font-size: 12.5px;
+      font-weight: 600;
+      border-radius: 6px;
+      border: 1px solid transparent;
+      cursor: pointer;
+      transition: all 0.15s;
+      white-space: nowrap;
+    }
+
+    .btn-primary {
+      background: var(--theme-primary);
+      color: #ffffff;
+      border-color: var(--theme-primary);
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    }
+
+    .btn-primary:hover {
+      filter: brightness(1.1);
+    }
+
+    .btn-secondary {
+      background: #ffffff;
+      color: #334155;
+      border-color: #cbd5e1;
+    }
+
+    .btn-secondary:hover {
+      background: #f8fafc;
+      border-color: #94a3b8;
+    }
+
+    .btn-outline-danger {
+      background: transparent;
+      color: #dc2626;
+      border-color: #fca5a5;
+    }
+
+    .btn-outline-danger:hover {
+      background: #fef2f2;
+    }
+
+    /* Main Workspace */
+    .workspace {
+      display: flex;
+      flex: 1;
+      overflow: hidden;
+    }
+
+    /* Sidebar */
+    .sidebar {
+      width: 320px;
+      background: var(--bg-panel);
+      border-right: 1px solid var(--border-subtle);
+      display: flex;
+      flex-direction: column;
+      flex-shrink: 0;
+      overflow-y: auto;
+      transition: width 0.25s cubic-bezier(0.4, 0, 0.2, 1), min-width 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+    }
+
+    .sidebar.collapsed {
+      width: 0 !important;
+      min-width: 0 !important;
+      overflow: hidden !important;
+      border-right: none !important;
+      padding: 0 !important;
+    }
+
+    .sidebar-toggle-btn {
+      background: #ffffff;
+      border: 1px solid var(--border-subtle);
+      border-radius: 6px;
+      padding: 6px 10px;
+      font-size: 12px;
+      font-weight: 600;
+      color: #334155;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+      transition: all 0.15s ease;
+    }
+
+    .sidebar-toggle-btn:hover {
+      background: #f8fafc;
+      border-color: #94a3b8;
+    }
+
+    .sidebar-header {
+      padding: 16px 18px;
+      border-bottom: 1px solid var(--border-subtle);
+      background: #f8fafc;
+      user-select: none;
+    }
+
+    .sidebar-header h2 {
+      font-size: 14px;
+      font-weight: 700;
+      color: #0f172a;
+      margin-bottom: 4px;
+    }
+
+    .sidebar-header p {
+      font-size: 11.5px;
+      color: var(--text-muted);
+      line-height: 1.45;
+    }
+
+    .blocks-container {
+      padding: 12px 14px 20px 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .sidebar-category {
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      background: #ffffff;
+      overflow: hidden;
+    }
+
+    .sidebar-category-btn {
+      width: 100%;
+      background: #f8fafc;
+      border: none;
+      padding: 10px 12px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+      font-family: inherit;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: #475569;
+      transition: background 0.15s;
+      user-select: none;
+    }
+
+    .sidebar-category-btn:hover {
+      background: #f1f5f9;
+      color: var(--theme-primary);
+    }
+
+    .sidebar-category-arrow {
+      font-size: 10px;
+      transition: transform 0.2s ease;
+      color: #64748b;
+    }
+
+    .sidebar-category.is-collapsed .sidebar-category-arrow {
+      transform: rotate(-90deg);
+    }
+
+    .sidebar-category-items {
+      padding: 8px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      border-top: 1px solid #f1f5f9;
+    }
+
+    .sidebar-category.is-collapsed .sidebar-category-items {
+      display: none;
+    }
+
+    .tool-item {
+      background: #ffffff;
+      border: 1px solid var(--border-subtle);
+      border-radius: 8px;
+      padding: 10px 12px;
+      cursor: grab;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      transition: all 0.15s ease;
+      user-select: none;
+    }
+
+    .tool-item:hover {
+      border-color: var(--theme-primary);
+      box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+      transform: translateY(-1px);
+    }
+
+    .tool-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 6px;
+      background: var(--theme-bg-soft);
+      color: var(--theme-primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      flex-shrink: 0;
+    }
+
+    .tool-info {
+      flex: 1;
+    }
+
+    .tool-name {
+      font-size: 12.5px;
+      font-weight: 600;
+      color: #1e293b;
+    }
+
+    .tool-desc {
+      font-size: 11px;
+      color: #64748b;
+      line-height: 1.3;
+    }
+
+    /* Canvas Wrapper */
+    .canvas-wrapper {
+      flex: 1;
+      overflow-y: auto;
+      padding: 20px 24px 64px 24px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background: #f1f5f9;
+      background-image: radial-gradient(#cbd5e1 1px, transparent 1px);
+      background-size: 20px 20px;
+    }
+
+    .canvas-topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      max-width: 640px;
+      margin-bottom: 12px;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .quick-preset-bar {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 6px;
+      background: #ffffff;
+      padding: 6px 12px;
+      border-radius: 12px;
+      border: 1px solid var(--border-subtle);
+      box-shadow: 0 1px 2px rgba(0,0,0,0.04);
+    }
+
+    .quick-preset-bar span {
+      font-size: 11.5px;
+      font-weight: 600;
+      color: #64748b;
+      margin-right: 4px;
+      white-space: nowrap;
+    }
+
+    .preset-pill {
+      border: 1px solid #e2e8f0;
+      background: #f8fafc;
+      padding: 4px 10px;
+      border-radius: 20px;
+      font-size: 11.5px;
+      font-weight: 600;
+      color: #334155;
+      cursor: pointer;
+      transition: all 0.15s;
+      white-space: nowrap;
+    }
+
+    .preset-pill:hover {
+      background: var(--theme-primary);
+      color: #ffffff;
+      border-color: var(--theme-primary);
+    }
+
+    .view-toggle-bar {
+      display: flex;
+      background: #ffffff;
+      border-radius: 6px;
+      border: 1px solid var(--border-subtle);
+      padding: 2px;
+    }
+
+    .view-toggle-btn {
+      border: none;
+      background: transparent;
+      padding: 4px 10px;
+      border-radius: 4px;
+      font-size: 11.5px;
+      font-weight: 600;
+      color: #475569;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .view-toggle-btn.active {
+      background: #f1f5f9;
+      color: #0f172a;
+    }
+
+    /* Email Canvas (Simulating 600px Email) */
+    .email-canvas {
+      width: 600px;
+      height: auto;
+      min-height: 420px;
+      background: #ffffff;
+      border: 1px solid #d2d6dc;
+      border-radius: 8px;
+      padding: 20px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+      transition: width 0.25s ease;
+      position: relative;
+      flex-shrink: 0;
+    }
+
+    .email-canvas.mobile-view {
+      width: 375px;
+      padding: 14px;
+    }
+
+    .email-canvas.mobile-view .lk-header-table,
+    .email-canvas.mobile-view .lk-header-table tbody,
+    .email-canvas.mobile-view .lk-header-table tr,
+    .email-canvas.mobile-view .lk-header-table td {
+      display: block !important;
+      width: 100% !important;
+      text-align: left !important;
+      padding-left: 0 !important;
+      padding-right: 0 !important;
+    }
+
+    .email-canvas.mobile-view .lk-header-badge-cell {
+      padding-top: 10px !important;
+    }
+
+    /* Simulated Outlook Dark Mode Preview */
+    .email-canvas.dark-preview {
+      background: #121214;
+      border-color: #27272a;
+    }
+
+    .email-canvas.dark-preview .canvas-item {
+      background: #1e1e24;
+      border-color: #3f3f46;
+      color: #f4f4f5;
+    }
+
+    .email-canvas.dark-preview .canvas-item p,
+    .email-canvas.dark-preview .canvas-item div:not([style*="color: #ffffff"]):not(.lk-tag):not(.lk-btn-link),
+    .email-canvas.dark-preview .canvas-item td,
+    .email-canvas.dark-preview .canvas-item strong {
+      color: #e4e4e7 !important;
+    }
+
+    .email-canvas.dark-preview .lk-event-card,
+    .email-canvas.dark-preview .lk-hours-card,
+    .email-canvas.dark-preview .lk-book-card,
+    .email-canvas.dark-preview .lk-familjen-bar,
+    .email-canvas.dark-preview table[style*="background-color: #FCEEED"],
+    .email-canvas.dark-preview table[style*="background-color: rgb(252, 238, 237)"],
+    .email-canvas.dark-preview table[style*="background-color: #E4F5FD"],
+    .email-canvas.dark-preview table[style*="background-color: rgb(228, 245, 253)"],
+    .email-canvas.dark-preview table[style*="background-color: #DBEED8"],
+    .email-canvas.dark-preview table[style*="background-color: rgb(219, 238, 216)"],
+    .email-canvas.dark-preview table[style*="background-color: #F7F4F3"],
+    .email-canvas.dark-preview table[style*="background-color: rgb(247, 244, 243)"],
+    .email-canvas.dark-preview table[style*="background-color: #fafafa"],
+    .email-canvas.dark-preview table[style*="background-color: rgb(250, 250, 250)"] {
+      background-color: #27272a !important;
+      border-color: #3f3f46 !important;
+    }
+
+    .email-canvas.dark-preview .lk-familjen-bar h4,
+    .email-canvas.dark-preview .lk-hours-title,
+    .email-canvas.dark-preview .lk-event-meta,
+    .email-canvas.dark-preview .canvas-item a:not(.lk-btn-link) {
+      color: var(--theme-secondary) !important;
+    }
+
+    .email-canvas.dark-preview .photo-upload-controls {
+      background: #27272a !important;
+      border-color: #52525b !important;
+    }
+
+    /* Canvas Items (Wrapped Cards) */
+    .canvas-item {
+      position: relative;
+      margin-bottom: 14px;
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      padding: 16px 18px;
+      transition: box-shadow 0.15s, border-color 0.15s;
+    }
+
+    .canvas-item:hover {
+      border-color: #94a3b8;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    }
+
+    .canvas-item.drag-over {
+      border: 2px dashed var(--theme-primary);
+    }
+
+    /* Item Controls Bar */
+    .item-controls {
+      position: absolute;
+      top: -12px;
+      right: 12px;
+      background: #0f172a;
+      border-radius: 4px;
+      display: none;
+      align-items: center;
+      gap: 2px;
+      padding: 3px 5px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+      z-index: 20;
+    }
+
+    .canvas-item:hover .item-controls {
+      display: flex;
+    }
+
+    .item-ctrl-btn {
+      background: transparent;
+      border: none;
+      color: #f8fafc;
+      width: 22px;
+      height: 22px;
+      border-radius: 3px;
+      font-size: 11px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: background 0.1s;
+    }
+
+    .item-ctrl-btn:hover {
+      background: rgba(255,255,255,0.2);
+    }
+
+    .item-ctrl-btn.danger:hover {
+      background: #ef4444;
+    }
+
+    /* Drop Placeholder */
+    .drop-placeholder {
+      border: 2px dashed #cbd5e1;
+      border-radius: 8px;
+      padding: 40px 20px;
+      text-align: center;
+      color: #94a3b8;
+      margin: 20px 0;
+    }
+
+    /* Floating Rich Text Toolbar */
+    .rich-text-toolbar {
+      position: absolute;
+      background: #0f172a;
+      border-radius: 6px;
+      padding: 4px 6px;
+      display: none;
+      align-items: center;
+      gap: 4px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+      z-index: 1000;
+    }
+
+    .rich-text-toolbar button {
+      background: transparent;
+      border: none;
+      color: #ffffff;
+      padding: 4px 8px;
+      font-size: 12px;
+      font-weight: 600;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .rich-text-toolbar button:hover {
+      background: rgba(255,255,255,0.2);
+    }
+
+    .toolbar-divider {
+      width: 1px;
+      height: 16px;
+      background: rgba(255,255,255,0.2);
+      margin: 0 2px;
+    }
+
+    /* Modals */
+    .modal-overlay {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(15, 23, 42, 0.6);
+      backdrop-filter: blur(2px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 2000;
+    }
+
+    .modal-box {
+      background: #ffffff;
+      width: 90%;
+      max-width: 650px;
+      border-radius: 10px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+      display: flex;
+      flex-direction: column;
+      max-height: 85vh;
+      overflow: hidden;
+    }
+
+    .modal-header {
+      padding: 16px 20px;
+      border-bottom: 1px solid var(--border-subtle);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .modal-header h3 {
+      font-size: 16px;
+      font-weight: 700;
+      color: #0f172a;
+    }
+
+    .modal-body {
+      padding: 20px;
+      overflow-y: auto;
+    }
+
+    .modal-footer {
+      padding: 14px 20px;
+      border-top: 1px solid var(--border-subtle);
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+      background: #f8fafc;
+    }
+
+    .code-preview {
+      width: 100%;
+      height: 280px;
+      font-family: monospace;
+      font-size: 11.5px;
+      padding: 12px;
+      border: 1px solid #cbd5e1;
+      border-radius: 6px;
+      background: #f8fafc;
+      resize: vertical;
+      color: #334155;
+    }
+
+    /* Staff Profile Form Controls */
+    .form-row {
+      margin-bottom: 12px;
+    }
+
+    .form-row label {
+      display: block;
+      font-size: 12px;
+      font-weight: 600;
+      color: #334155;
+      margin-bottom: 4px;
+    }
+
+    .form-row input {
+      width: 100%;
+      padding: 8px 12px;
+      border: 1px solid #cbd5e1;
+      border-radius: 6px;
+      font-size: 13px;
+      font-family: inherit;
+    }
+
+    .form-row input:focus {
+      outline: none;
+      border-color: var(--theme-primary);
+      box-shadow: 0 0 0 2px rgba(99, 21, 51, 0.15);
+    }
+
+    /* Editor-only inline block action bars (stripped on export) */
+    .editor-only-controls {
+      margin-top: 8px;
+      padding-top: 8px;
+      border-top: 1px dashed #e2e8f0;
+      display: flex;
+      gap: 6px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .editor-mini-btn {
+      background: #f8fafc;
+      border: 1px solid #cbd5e1;
+      border-radius: 4px;
+      padding: 4px 10px;
+      font-size: 11px;
+      font-weight: 600;
+      color: #334155;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .editor-mini-btn:hover {
+      background: #eef2ff;
+      border-color: var(--theme-primary);
+      color: var(--theme-primary);
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
+
+    .gallery-card {
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: transform 0.15s, border-color 0.15s;
+      background: #ffffff;
+    }
+
+    .gallery-card:hover {
+      transform: translateY(-2px);
+      border-color: var(--theme-primary);
+    }
+
+    .gallery-card img {
+      width: 100%;
+      height: 120px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .gallery-card-title {
+      padding: 8px 10px;
+      font-size: 12px;
+      font-weight: 600;
+      color: #1e293b;
+    }
+
+    /* Toast Notification */
+    .toast {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: #0f172a;
+      color: #ffffff;
+      padding: 10px 18px;
+      border-radius: 6px;
+      font-size: 13px;
+      font-weight: 500;
+      display: none;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      z-index: 3000;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Navigation Bar -->
+  <header>
+    <div class="header-row">
+      <div class="brand">
+        <div class="brand-crest" title="Landskrona">
+          <img id="navCrestImg" src="https://cdn.jsdelivr.net/gh/nahriadn/landskrona-email-assets@main/Krona_vinrod.png" alt="Landskrona" />
+        </div>
+        <div class="brand-text">
+          <h1 id="ui_brand_title">Landskrona <span>stadsbibliotek</span></h1>
+          <p id="ui_brand_desc">Officiell e-post- &amp; nyhetsbrevsbyggare för personal</p>
+        </div>
+      </div>
+
+      <!-- Brand Mode & Harmony Selectors -->
+      <div class="brand-selectors-bar">
+        <!-- Brand Toggle: Stad vs Ven -->
+        <div class="selector-group">
+          <span class="selector-label" id="ui_lbl_profile">Profil:</span>
+          <button class="brand-toggle-btn active" id="btnBrandStad" onclick="setBrandMode('stad')">
+            🏛️ Landskrona stad
+          </button>
+          <button class="brand-toggle-btn" id="btnBrandVen" onclick="setBrandMode('ven')">
+            ⛵ Landskrona Ven
+          </button>
+        </div>
+
+        <!-- Landskrona stad Harmonies (1 of 3) -->
+        <div class="selector-group" id="harmonyGroup">
+          <span class="selector-label" id="ui_lbl_harmony">Harmoni:</span>
+          <button class="harmony-pill active" id="pillBurgundy" onclick="setStadHarmony('burgundy')" style="background-color: #631533;" title="Vinröd / Rosa (Kultur & Soluppgång)"></button>
+          <button class="harmony-pill" id="pillBlue" onclick="setStadHarmony('blue')" style="background-color: #004E68;" title="Mörkblå / Blå (Hav & Himmel)"></button>
+          <button class="harmony-pill" id="pillGreen" onclick="setStadHarmony('green')" style="background-color: #005152;" title="Mörkgrön / Grön (Natur & Arkitektur)"></button>
+        </div>
+      </div>
+
+      <div class="header-actions">
+        <!-- Staff Profile Button -->
+        <button class="btn btn-secondary" onclick="openProfileModal()" title="Redigera din profil / Edit signature details">
+          <span>👤</span> <span id="ui_btn_profile">Min profil</span>
+        </button>
+
+        <!-- Language Switcher with Crisp SVG Flags -->
+        <div class="lang-switcher">
+          <button class="lang-btn active" id="btnLangSv" onclick="setLanguage('sv')" title="Växla till svenska">
+            <svg class="flag-icon" viewBox="0 0 16 10" width="18" height="12" style="border-radius: 2px; overflow: hidden;">
+              <rect width="16" height="10" fill="#006aa7"/>
+              <rect x="5" width="2" height="10" fill="#fecc00"/>
+              <rect y="4" width="16" height="2" fill="#fecc00"/>
+            </svg>
+            <span>SV</span>
+          </button>
+          <button class="lang-btn" id="btnLangEn" onclick="setLanguage('en')" title="Switch to English">
+            <svg class="flag-icon" viewBox="0 0 60 30" width="18" height="12" style="border-radius: 2px; overflow: hidden;">
+              <clipPath id="s"><path d="M0,0 v30 h60 v-30 z"/></clipPath>
+              <clipPath id="t"><path d="M30,15 h30 v15 z v15 h-30 z h-30 v-15 z v-15 h30 z"/></clipPath>
+              <g clip-path="url(#s)">
+                <path d="M0,0 v30 h60 v-30 z" fill="#012169"/>
+                <path d="M0,0 L60,30 M60,0 L0,30" stroke="#fff" stroke-width="6"/>
+                <path d="M0,0 L60,30 M60,0 L0,30" clip-path="url(#t)" stroke="#C8102E" stroke-width="4"/>
+                <path d="M30,0 v30 M0,15 h60" stroke="#fff" stroke-width="10"/>
+                <path d="M30,0 v30 M0,15 h60" stroke="#C8102E" stroke-width="6"/>
+              </g>
+            </svg>
+            <span>EN</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="header-row-actions">
+      <div style="display: flex; align-items: center; gap: 8px;">
+        <!-- Sidebar Toggle Button -->
+        <button class="sidebar-toggle-btn" id="btnToggleSidebar" onclick="toggleSidebar()" title="Dölj/visa sidopanel">
+          <span id="sidebarToggleIcon">◀</span> <span id="ui_btn_sidebar">Dölj block</span>
+        </button>
+        <button class="btn btn-secondary" id="ui_btn_undo" onclick="undoLastAction()" disabled style="opacity: 0.5;">↩️ Ångra</button>
+        <button class="btn btn-outline-danger" id="ui_btn_clear" onclick="clearCanvas()">🗑️ Töm</button>
+      </div>
+
+      <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+        <button class="btn btn-secondary" id="ui_btn_klarsprak" onclick="runKlarsprakCheck()" title="Kontrollera Klarspråk & varumärkesregler">✓ Klarspråk</button>
+        <button class="btn btn-secondary" onclick="copySignatureOnly()" title="Kopiera Outlook-signatur">
+          <span>✒️</span> <span id="ui_btn_sig">Kopiera signatur</span>
+        </button>
+        <button class="btn btn-secondary" id="ui_btn_viewhtml" onclick="openPreviewModal()">📄 Visa HTML</button>
+        <button class="btn btn-secondary" id="ui_btn_eml" onclick="downloadEmlDraft()" title="Ladda ned .eml-utkast för Outlook">✉️ Spara utkast (.eml)</button>
+        <button class="btn btn-primary" id="ui_btn_copy" onclick="copyEmailHTML()">📋 Kopiera för Outlook</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Workspace -->
+  <div class="workspace">
+    <!-- Left Sidebar: Draggable Blocks -->
+    <aside class="sidebar" id="mainSidebar">
+      <div class="sidebar-header">
+        <h2 id="ui_sidebar_title">Byggblock</h2>
+        <p id="ui_sidebar_desc">Dra block till mailet eller klicka för att lägga till direkt.</p>
+      </div>
+
+      <div class="blocks-container" id="blocksContainer">
+        <!-- Rendered dynamically depending on language and active brand -->
+      </div>
+    </aside>
+
+    <!-- Canvas Area -->
+    <main class="canvas-wrapper">
+      <div class="email-meta-card" style="width: 100%; max-width: 640px; background: #ffffff; border: 1px solid var(--border-subtle); border-radius: 8px; padding: 12px 16px; margin-bottom: 12px; box-shadow: 0 1px 3px rgba(0,0,0,0.04);">
+        <div style="display: flex; gap: 12px; align-items: center; margin-bottom: 8px;">
+          <span id="ui_lbl_subject" style="font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; color: var(--theme-primary); width: 95px;">Ämnesrad:</span>
+          <input type="text" id="email_subject_input" value="Nyhetsbrev från Landskrona stadsbibliotek" style="flex: 1; padding: 6px 10px; border: 1px solid #cbd5e1; border-radius: 4px; font-size: 12.5px; font-family: inherit;" placeholder="Skriv e-postens ämnesrad här...">
+        </div>
+        <div style="display: flex; gap: 12px; align-items: center;">
+          <span id="ui_lbl_preheader" style="font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; color: #64748b; width: 95px;">Förhandstitt:</span>
+          <input type="text" id="email_preheader_input" value="Upptäck månadens författarbesök, sagostunder och boknyheter." style="flex: 1; padding: 6px 10px; border: 1px solid #cbd5e1; border-radius: 4px; font-size: 12px; font-family: inherit; color: #475569;" placeholder="Kort text som syns i Outlooks inkorg innan mailet öppnas...">
+        </div>
+      </div>
+
+      <div class="canvas-topbar">
+        <div class="quick-preset-bar">
+          <span id="ui_presets_label">⚡ Mallar:</span>
+          <div id="presetButtonsWrap" style="display: flex; gap: 6px; flex-wrap: wrap;">
+            <!-- Dynamically populated based on brand mode -->
+          </div>
+          <button class="preset-pill" id="ui_btn_save_tpl" onclick="saveCustomTemplate()" style="border-style: dashed; color: var(--theme-primary);">💾 Spara mall</button>
+        </div>
+
+        <!-- Desktop vs Mobile View Preview Switcher -->
+        <div class="view-toggle-bar">
+          <button class="view-toggle-btn active" id="btnViewDesktop" onclick="setCanvasView('desktop')">💻 Dator (600px)</button>
+          <button class="view-toggle-btn" id="btnViewMobile" onclick="setCanvasView('mobile')">📱 Mobil (375px)</button>
+          <button class="view-toggle-btn" id="btnViewDark" onclick="toggleDarkPreview()" title="Förhandsgranska i Outlook Dark Mode">🌙 Mörkt läge</button>
+        </div>
+      </div>
+
+      <div class="email-canvas" id="emailCanvas">
+        <!-- Rendered draggable email items appear here -->
+      </div>
+    </main>
+  </div>
+
+  <!-- Modal for Raw HTML & Export -->
+  <div class="modal-overlay" id="exportModal">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h3 id="ui_modal_title">Nyhetsbrev HTML-kod</h3>
+        <button class="btn btn-secondary" onclick="closePreviewModal()">✕</button>
+      </div>
+      <div class="modal-body">
+        <p style="font-size: 13px; color: #4b5563; margin-bottom: 10px;" id="ui_modal_desc">
+          Koden innehåller inbäddade stilar anpassade för Microsoft Outlook, Gmail och kommunal distribution.
+        </p>
+        <textarea class="code-preview" id="rawHtmlText" readonly></textarea>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" id="ui_modal_btn_close" onclick="closePreviewModal()">Stäng</button>
+        <button class="btn btn-primary" id="ui_modal_btn_copy" onclick="copyModalCode()">📋 Kopiera kod</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal for Staff Profile Settings -->
+  <div class="modal-overlay" id="profileModal">
+    <div class="modal-box" style="max-width: 500px;">
+      <div class="modal-header">
+        <h3 id="ui_profile_title">Min personalprofil &amp; signatur</h3>
+        <button class="btn btn-secondary" onclick="closeProfileModal()">✕</button>
+      </div>
+      <div class="modal-body">
+        <p style="font-size: 12.5px; color: #64748b; margin-bottom: 14px;" id="ui_profile_desc">
+          Fyll i dina uppgifter så uppdateras alla e-postsignaturer och kontaktuppgifter i dina mail automatiskt.
+        </p>
+        
+        <div class="form-row">
+          <label id="lbl_prof_name">För- &amp; efternamn</label>
+          <input type="text" id="prof_name" value="Anna Lindström">
+        </div>
+        <div class="form-row">
+          <label id="lbl_prof_title">Titel / Befattning</label>
+          <input type="text" id="prof_title" value="Bibliotekarie / Librarian">
+        </div>
+        <div class="form-row">
+          <label id="lbl_prof_dept">Verksamhet / Avdelning</label>
+          <input type="text" id="prof_dept" value="Landskrona stadsbibliotek">
+        </div>
+        <div class="form-row">
+          <label id="lbl_prof_phone">Direkttelefon</label>
+          <input type="text" id="prof_phone" value="0418-47 35 12">
+        </div>
+        <div class="form-row">
+          <label id="lbl_prof_mobile">Mobiltelefon (valfri)</label>
+          <input type="text" id="prof_mobile" value="0709-47 35 12">
+        </div>
+        <div class="form-row">
+          <label id="lbl_prof_email">E-postadress</label>
+          <input type="email" id="prof_email" value="anna.lindstrom@landskrona.se">
+        </div>
+        <div class="form-row">
+          <label id="lbl_prof_photo">Porträttfoto i signatur (valfri HTTPS-länk)</label>
+          <input type="url" id="prof_photo" placeholder="https://... (lämna tomt för att endast visa kronan)">
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" id="ui_prof_btn_cancel" onclick="closeProfileModal()">Avbryt</button>
+        <button class="btn btn-primary" id="ui_prof_btn_save" onclick="saveProfile()">💾 Spara uppgifter</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Floating Rich-Text Mini Toolbar -->
+  <div class="rich-text-toolbar" id="richTextToolbar">
+    <button type="button" onmousedown="formatDoc('bold')" title="Fetstil"><strong>B</strong></button>
+    <button type="button" onmousedown="formatDoc('underline')" title="Understruken"><u>U</u></button>
+    <div class="toolbar-divider"></div>
+    <button type="button" onmousedown="insertDocLink()" title="Infoga länk">🔗 Länk</button>
+    <button type="button" onmousedown="formatDoc('removeFormat')" title="Rensa formatering">✕ Rensa</button>
+  </div>
+
+  <!-- Modal for Pre-hosted Image Gallery (Bildbank) -->
+  <div class="modal-overlay" id="galleryModal">
+    <div class="modal-box" style="max-width: 580px;">
+      <div class="modal-header">
+        <h3 id="ui_gallery_title">🖼️ Bibliotekets bildbank (Outlook-säkra bilder)</h3>
+        <button class="btn btn-secondary" onclick="closeGalleryModal()">✕</button>
+      </div>
+      <div class="modal-body">
+        <p style="font-size: 12.5px; color: #475569; margin-bottom: 12px;" id="ui_gallery_desc">
+          Dessa bilder laddas via HTTPS och fungerar alltid i Outlook Desktop, Outlook Webb (O365) och Gmail.
+        </p>
+        <div class="gallery-grid" id="galleryGrid"></div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" id="ui_gallery_btn_close" onclick="closeGalleryModal()">Stäng</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal for Klarspråk & Brand Check -->
+  <div class="modal-overlay" id="klarsprakModal">
+    <div class="modal-box" style="max-width: 540px;">
+      <div class="modal-header">
+        <h3 id="ui_klarsprak_title">✓ Kontroll av Klarspråk &amp; varumärkesregler</h3>
+        <button class="btn btn-secondary" onclick="closeKlarsprakModal()">✕</button>
+      </div>
+      <div class="modal-body" id="klarsprakBody"></div>
+      <div class="modal-footer">
+        <button class="btn btn-primary" onclick="closeKlarsprakModal()">OK</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification -->
+  <div class="toast" id="toastMessage">Åtgärd utförd!</div>
+
